@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.meta.xr.sdk.all": "65.0.0",
+    "com.meta.xr.sdk.all": "66.0.0",
     "com.meta.xr.sdk.avatars": "24.1.1",
     "com.meta.xr.sdk.avatars.sample.assets": "24.1.1",
     "com.unity.collab-proxy": "2.0.5",
