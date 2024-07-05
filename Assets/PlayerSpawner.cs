@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class PlayerSpawner : NetworkBehaviour
 {
     public List<Transform> spawnPoints;
-    public NetworkObject playerPrefab;
+    public GameObject playerCameraRig;
     private int nextSpawnPointIndex = 0;
 
     public override void OnNetworkSpawn()
     {
-        if (IsServer)
+        if (IsOwner)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
         }
@@ -18,12 +18,10 @@ public class PlayerSpawner : NetworkBehaviour
 
     private void SpawnPlayer(ulong clientId)
     {
-        if (!IsServer) return;
+        if (!IsOwner) return;
 
         Vector3 spawnPosition = GetNextSpawnPoint();
-
-        NetworkObject playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-        playerInstance.SpawnAsPlayerObject(clientId);
+        playerCameraRig.transform.position = spawnPosition;
     }
 
     private Vector3 GetNextSpawnPoint()
