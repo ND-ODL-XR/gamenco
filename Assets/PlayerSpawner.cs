@@ -5,23 +5,46 @@ using System.Collections.Generic;
 public class PlayerSpawner : NetworkBehaviour
 {
     public List<Transform> spawnPoints;
-    public GameObject playerCameraRig;
-    private int nextSpawnPointIndex = 0;
+    public NetworkVariable<int> nextSpawnPointIndex = new NetworkVariable<int>(0);
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner)
+        Debug.Log("On network spawn called");
+        if (IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
+            NetworkManager.Singleton.OnClientConnectedCallback += MovePlayerToSpawn;
         }
     }
 
-    private void SpawnPlayer(ulong clientId)
+    private void MovePlayerToSpawn(ulong clientId)
     {
-        if (!IsOwner) return;
+        Debug.Log("Moving client to right spawn point");
 
         Vector3 spawnPosition = GetNextSpawnPoint();
-        playerCameraRig.transform.position = spawnPosition;
+        Debug.Log("spawning at "+ spawnPosition);
+
+        SetPlayerSpawnPointClientRpc(spawnPosition, new ClientRpcParams { Send = new ClientRpcSendParams { TargetClientIds = new[] { clientId } } });
+    }
+
+    [ClientRpc]
+    private void SetPlayerSpawnPointClientRpc(Vector3 spawnPosition, ClientRpcParams clientRpcParams = default)
+    {
+        // This will run on the client that requested the spawn point
+        MoveLocalCameraRig(spawnPosition);
+    }
+
+    private void MoveLocalCameraRig(Vector3 spawnPosition)
+    {
+       
+        var rig = FindObjectOfType<OVRCameraRig>(); 
+        if (rig != null)
+        {
+            rig.transform.position = spawnPosition;
+        }
+        else
+        {
+            Debug.LogError("Rig not found!");
+        }
     }
 
     private Vector3 GetNextSpawnPoint()
@@ -32,8 +55,8 @@ public class PlayerSpawner : NetworkBehaviour
             return Vector3.zero;
         }
 
-        Vector3 spawnPoint = spawnPoints[nextSpawnPointIndex].position;
-        nextSpawnPointIndex = (nextSpawnPointIndex + 1) % spawnPoints.Count;
+        Vector3 spawnPoint = spawnPoints[nextSpawnPointIndex.Value].position;
+        nextSpawnPointIndex.Value = (nextSpawnPointIndex.Value + 1) % spawnPoints.Count;
         return spawnPoint;
     }
 }
