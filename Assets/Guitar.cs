@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Guitar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioSource[] notes;
+    private bool colliding = false;
+    public int currentNote = 0;
+
+    private void Update()
     {
-        
+        colliding = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (colliding) return;
+        colliding = true;
+
+        if (other.CompareTag("GuitarPick")) { 
+            notes[currentNote].Play();
+            currentNote++;
+            if (currentNote >= notes.Length)
+            {
+                currentNote = 0;
+            }
+        }
     }
 }
