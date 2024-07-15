@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Metronome : MonoBehaviour
 {
-    // Interval between HALF beats
     [SerializeField] private float beatInterval;
     [SerializeField] private float errorMargin;
+
     [SerializeField] private TMPro.TextMeshProUGUI beatText;
-    [SerializeField] private Guitar guitar;
+    [SerializeField] private TimedInstrument[] timedInstruments;
 
     private AudioSource audioSource;
     private float beatTimer;
@@ -46,18 +46,19 @@ public class Metronome : MonoBehaviour
     // Coroutine to play the next beat after errorMargin/2 seconds
     public IEnumerator PlayNextBeat()
     {
+        // Save the current beat number due to the delay (1-indexed)
         int beat = beatCount + 1;
         yield return new WaitForSeconds(errorMargin / 2);
         beatText.text = beat.ToString();
         audioSource.Play();
         yield return new WaitForSeconds(errorMargin / 2);
-        if (guitar.beats[beat - 1] == 1 && !guitar.playedCurrentBeat || guitar.beats[beat - 1] == 0 && guitar.playedCurrentBeat)
+        for (int i = 0; i < timedInstruments.Length; i++)
         {
-            guitar.Fail();
-        } else
-        {
-            guitar.playedCurrentBeat = false;
-            guitar.Succeed();
+            if (timedInstruments[i].gameObject.activeSelf)
+            {
+                timedInstruments[i].OnBeatEnd(beat);
+            }
         }
+        
     }
 }

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Castanets : MonoBehaviour
+public class Castanets : TimedInstrument
 {
     [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-    
+
     }
 
-    public void OnCastanetTouch() {
+    public override void PlayNote()
+    {
         audioSource.Play();
+        playedCurrentBeat = true;
     }
 }

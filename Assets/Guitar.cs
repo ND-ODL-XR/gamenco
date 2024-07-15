@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Guitar : MonoBehaviour
+public class Guitar : TimedInstrument
 {
     [SerializeField] private AudioSource[] notes;
-    [SerializeField] private Metronome metronome;
-    [SerializeField] private TMPro.TextMeshProUGUI guitarText;
 
     private bool colliding = false;
     public int currentNote = 0;
+
+    // Cooldown for resetting the notes
     [SerializeField] float cooldown;
     private float cooldownTimer;
-
-    public sbyte[] beats;
-    public bool playedCurrentBeat = false;
 
     private void Update()
     {
@@ -34,27 +31,19 @@ public class Guitar : MonoBehaviour
         colliding = true;
 
         if (other.CompareTag("GuitarPick")) {
-            notes[currentNote].Play();
-            currentNote++;
-
-            playedCurrentBeat = true;
-
-            if (currentNote >= notes.Length)
-            {
-                currentNote = 0;
-            }
+            PlayNote();
         }
     }
 
-    public void Fail() { 
-        guitarText.color = Color.red;
-        guitarText.text = "Incorrect";
+    public override void PlayNote() {
+        notes[currentNote].Play();
+        currentNote++;
+
+        playedCurrentBeat = true;
+
+        if (currentNote >= notes.Length)
+        {
+            currentNote = 0;
+        }
     }
-
-    public void Succeed()
-    {
-        guitarText.color = Color.green;
-        guitarText.text = "Correct";
-    }   
-
 }

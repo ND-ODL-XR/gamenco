@@ -867,7 +867,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639e2d10e2d34d848b528f2610b6c78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  resultText: {fileID: 523343246}
+  beats: 00010001
+  playedCurrentBeat: 0
+  successfulSequence: 1
+  audioSource: {fileID: 30632178}
 --- !u!1 &31135042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2542,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 30632179}
         m_TargetAssemblyTypeName: Castanets, Assembly-CSharp
-        m_MethodName: OnCastanetTouch
+        m_MethodName: PlayNote
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4706,7 +4710,7 @@ GameObject:
   - component: {fileID: 314369956}
   - component: {fileID: 314369955}
   m_Layer: 5
-  m_Name: Guitar Text (1)
+  m_Name: Guitar Result Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6422,9 +6426,8 @@ GameObject:
   - component: {fileID: 387586251}
   - component: {fileID: 387586250}
   - component: {fileID: 387586249}
-  - component: {fileID: 387586261}
   m_Layer: 0
-  m_Name: Dress
+  m_Name: Hand Dance 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6667,30 +6670,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387586248}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.803, y: 0.638, z: 3.159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5997801, y: 0.46826845, z: -0.57359695}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1005337009}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 945406982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &387586261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387586248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6137da04b96b3a5458fac63522c5ac3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _selector: {fileID: 688758211}
-  _renderer: {fileID: 387586257}
-  _normalColor: {r: 1, g: 0, b: 0, a: 1}
-  _selectColor: {r: 1, g: 0.91970694, b: 0, a: 1}
 --- !u!1 &388953450
 GameObject:
   m_ObjectHideFlags: 0
@@ -9308,6 +9295,140 @@ Transform:
   - {fileID: 229351845}
   m_Father: {fileID: 946839621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &523343244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523343245}
+  - component: {fileID: 523343247}
+  - component: {fileID: 523343246}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &523343245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523343244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 25.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1488168106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -29.8, y: -6.4}
+  m_SizeDelta: {x: 40.76, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &523343246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523343244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Castanet
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 3
+  m_fontSizeBase: 3
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &523343247
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523343244}
+  m_CullTransparentMesh: 1
 --- !u!1 &526102196
 GameObject:
   m_ObjectHideFlags: 0
@@ -12928,8 +13049,9 @@ GameObject:
   - component: {fileID: 688758212}
   - component: {fileID: 688758211}
   - component: {fileID: 688758214}
+  - component: {fileID: 688758215}
   m_Layer: 0
-  m_Name: Dress Pose 1
+  m_Name: Hand Dance Pose 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13003,6 +13125,38 @@ MonoBehaviour:
     RotationOffset: {x: 0, y: 0, z: 0}
     UpVectorType: 2
     FeatureThresholds: {fileID: 11400000, guid: c3b8ad91822f5004ea6c8c68c3bd5e66, type: 2}
+--- !u!114 &688758215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688758208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2705674196dfc4da9c25fbacda72d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeState: {fileID: 688758214}
+  _whenActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 713605761}
+        m_TargetAssemblyTypeName: HandDance, Assembly-CSharp
+        m_MethodName: OnPoseCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  _emitOnFirstUpdate: 0
 --- !u!1 &691204404
 GameObject:
   m_ObjectHideFlags: 0
@@ -13319,8 +13473,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 713605760}
+  - component: {fileID: 713605761}
   m_Layer: 0
-  m_Name: Dress Poses
+  m_Name: Hand Dance Poses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13344,6 +13499,29 @@ Transform:
   - {fileID: 953736420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &713605761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713605759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a890f8c3ff994ce4a9a090dff574e784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  handPoseText: {fileID: 1151915546}
+  progressMaterials:
+  - {fileID: 2100000, guid: 54efed6b516cff04e91bd641a9366d02, type: 2}
+  - {fileID: 2100000, guid: d97eaa0b78fa9a741bd27f1feccc4a85, type: 2}
+  - {fileID: 2100000, guid: b75d406e05dfb8c4cb5d45f37b7461f3, type: 2}
+  deactivatedColor: {r: 0.5754717, g: 0.12848577, b: 0.12848577, a: 0}
+  activatedColors:
+  - {r: 1, g: 0.8679244, b: 0, a: 0}
+  - {r: 0.7299913, g: 1, b: 0, a: 0}
+  - {r: 0.1372287, g: 0.8679245, b: 0, a: 0}
 --- !u!1 &715965914
 GameObject:
   m_ObjectHideFlags: 0
@@ -14646,30 +14824,13 @@ GameObject:
   - component: {fileID: 773263984}
   - component: {fileID: 773263983}
   - component: {fileID: 773263982}
-  - component: {fileID: 773263981}
   m_Layer: 0
-  m_Name: Dress (2)
+  m_Name: Hand Dance 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &773263981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773263980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6137da04b96b3a5458fac63522c5ac3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _selector: {fileID: 953736424}
-  _renderer: {fileID: 773263990}
-  _normalColor: {r: 1, g: 0, b: 0, a: 1}
-  _selectColor: {r: 0.14329553, g: 1, b: 0, a: 1}
 --- !u!114 &773263982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14847,7 +15008,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 54efed6b516cff04e91bd641a9366d02, type: 2}
+  - {fileID: 2100000, guid: b75d406e05dfb8c4cb5d45f37b7461f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14907,13 +15068,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773263980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.016, y: 0.638, z: 3.159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.18721986, y: 0.46826845, z: -0.57359695}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1129750353}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 945406982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773405940
 GameObject:
@@ -17465,6 +17626,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1430025968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945406981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945406982}
+  m_Layer: 0
+  m_Name: Hand Dance Progress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &945406982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945406981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.20322, y: 0.16973156, z: 3.7325969}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 387586260}
+  - {fileID: 1896319515}
+  - {fileID: 773263993}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &946839620
 GameObject:
   m_ObjectHideFlags: 0
@@ -17694,8 +17889,9 @@ GameObject:
   - component: {fileID: 953736425}
   - component: {fileID: 953736424}
   - component: {fileID: 953736423}
+  - component: {fileID: 953736426}
   m_Layer: 0
-  m_Name: Dress Pose 3
+  m_Name: Hand Dance Pose 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17766,6 +17962,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 1345940587}
+--- !u!114 &953736426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953736419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2705674196dfc4da9c25fbacda72d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeState: {fileID: 953736423}
+  _whenActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 713605761}
+        m_TargetAssemblyTypeName: HandDance, Assembly-CSharp
+        m_MethodName: OnPoseCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  _emitOnFirstUpdate: 0
 --- !u!1 &954758172
 GameObject:
   m_ObjectHideFlags: 0
@@ -18386,16 +18614,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552577449ac43f4a8105e38ef31c4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resultText: {fileID: 576469898}
+  beats: 01000101
+  playedCurrentBeat: 0
+  successfulSequence: 1
   notes:
   - {fileID: 402643526}
   - {fileID: 590114297}
   - {fileID: 742822288}
-  metronome: {fileID: 2120340584}
-  guitarText: {fileID: 576469898}
   currentNote: 0
   cooldown: 4
-  beats: 01000101
-  playedCurrentBeat: 0
 --- !u!1001 &964819400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18487,7 +18715,7 @@ PrefabInstance:
     - target: {fileID: 5903181773383361112, guid: 424c2298facd2bf419beffd69e8cc855, type: 3}
       propertyPath: _syntheticHand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 934443181}
     - target: {fileID: 7153135837303690165, guid: 424c2298facd2bf419beffd69e8cc855, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -27976,6 +28204,108 @@ Transform:
   m_Children: []
   m_Father: {fileID: 946839621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1488168102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1488168106}
+  - component: {fileID: 1488168105}
+  - component: {fileID: 1488168104}
+  - component: {fileID: 1488168103}
+  m_Layer: 5
+  m_Name: Castanet Result Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1488168103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488168102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1488168104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488168102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!223 &1488168105
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488168102}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1488168106
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488168102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.138}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 523343245}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.834, y: 0.224}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1490006213
 GameObject:
   m_ObjectHideFlags: 0
@@ -34690,7 +35020,7 @@ PrefabInstance:
     - target: {fileID: 5903181773383361112, guid: 424c2298facd2bf419beffd69e8cc855, type: 3}
       propertyPath: _syntheticHand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1081511941}
     - target: {fileID: 7153135837303690165, guid: 424c2298facd2bf419beffd69e8cc855, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -34886,30 +35216,13 @@ GameObject:
   - component: {fileID: 1896319506}
   - component: {fileID: 1896319505}
   - component: {fileID: 1896319504}
-  - component: {fileID: 1896319503}
   m_Layer: 0
-  m_Name: Dress (1)
+  m_Name: Hand Dance 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1896319503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896319502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6137da04b96b3a5458fac63522c5ac3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _selector: {fileID: 1991175694}
-  _renderer: {fileID: 1896319512}
-  _normalColor: {r: 1, g: 0, b: 0, a: 1}
-  _selectColor: {r: 0.6259048, g: 1, b: 0, a: 1}
 --- !u!114 &1896319504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35087,7 +35400,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 54efed6b516cff04e91bd641a9366d02, type: 2}
+  - {fileID: 2100000, guid: d97eaa0b78fa9a741bd27f1feccc4a85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35147,13 +35460,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896319502}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.42, y: 0.638, z: 3.159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.21678019, y: 0.46826845, z: -0.57359695}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 368416690}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 945406982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897697055
 GameObject:
@@ -37217,11 +37530,12 @@ GameObject:
   - component: {fileID: 1991175692}
   - component: {fileID: 1991175695}
   - component: {fileID: 1991175694}
+  - component: {fileID: 1991175697}
   - component: {fileID: 1991175693}
   - component: {fileID: 1991175696}
-  - component: {fileID: 1991175697}
+  - component: {fileID: 1991175698}
   m_Layer: 0
-  m_Name: Dress Pose 2
+  m_Name: Hand Dance Pose 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37321,9 +37635,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activeStates:
-  - {fileID: 1991175696}
   - {fileID: 1991175693}
+  - {fileID: 1991175696}
   _logicOperator: 0
+--- !u!114 &1991175698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991175691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2705674196dfc4da9c25fbacda72d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeState: {fileID: 1991175697}
+  _whenActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 713605761}
+        m_TargetAssemblyTypeName: HandDance, Assembly-CSharp
+        m_MethodName: OnPoseCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  _emitOnFirstUpdate: 0
 --- !u!1 &1992387102
 GameObject:
   m_ObjectHideFlags: 0
@@ -39492,7 +39838,9 @@ MonoBehaviour:
   beatInterval: 1
   errorMargin: 0.6
   beatText: {fileID: 2060459750}
-  guitar: {fileID: 962283789}
+  timedInstruments:
+  - {fileID: 962283789}
+  - {fileID: 30632179}
   beatCount: 0
 --- !u!1 &2120891673
 GameObject:
@@ -40345,9 +40693,7 @@ SceneRoots:
   - {fileID: 962283788}
   - {fileID: 395915036}
   - {fileID: 961818626}
-  - {fileID: 387586260}
-  - {fileID: 1896319515}
-  - {fileID: 773263993}
+  - {fileID: 945406982}
   - {fileID: 531770016}
   - {fileID: 1276539168}
   - {fileID: 1870160824}
@@ -40360,6 +40706,7 @@ SceneRoots:
   - {fileID: 1046028465}
   - {fileID: 2126481823}
   - {fileID: 314369958}
+  - {fileID: 1488168106}
   - {fileID: 1248253345}
   - {fileID: 364392869}
   - {fileID: 1676724131}
