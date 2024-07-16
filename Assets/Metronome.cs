@@ -8,7 +8,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private float beatInterval;
     [SerializeField] private float errorMargin;
 
-    [SerializeField] private TMPro.TextMeshProUGUI beatText;
+    [SerializeField] private TMPro.TextMeshProUGUI[] beatTexts;
     [SerializeField] private TimedInstrument[] timedInstruments;
 
     private AudioSource audioSource;
@@ -49,7 +49,13 @@ public class Metronome : MonoBehaviour
         // Save the current beat number due to the delay (1-indexed)
         int beat = beatCount + 1;
         yield return new WaitForSeconds(errorMargin / 2);
-        beatText.text = beat.ToString();
+
+        //beatText.text = beat.ToString();
+        for (int i = 0; i < beatTexts.Length; i++)
+        {
+            beatTexts[i].text = beat.ToString();
+        }
+
         audioSource.Play();
         yield return new WaitForSeconds(errorMargin / 2);
         for (int i = 0; i < timedInstruments.Length; i++)
