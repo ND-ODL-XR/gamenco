@@ -5,16 +5,25 @@ using Unity.Netcode;
 
 public class Castanets : TimedInstrument
 {
+
+    [SerializeField] private Renderer[] castanetRenderers;
+
     [ClientRpc]
     public void ActivateClientRpc()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        for (int i = 0; i < castanetRenderers.Length; i++)
+        {
+            castanetRenderers[i].material.color = Color.green;
+        }
     }
 
     [ClientRpc]
     public void DeactivateClientRpc()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        for (int i = 0; i < castanetRenderers.Length; i++)
+        {
+            castanetRenderers[i].material.color = Color.red;
+        }
     }
 
 }

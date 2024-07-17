@@ -12,6 +12,8 @@ public abstract class TimedInstrument : NetworkBehaviour
     [SerializeField] private ulong allowedPlayerId;
     [SerializeField] private Metronome metronome;
 
+    [SerializeField] private GameManager gameManager;
+
     public sbyte[] beats;
     public bool playedCurrentBeat = false;
     public bool successfulSequence = true;
@@ -59,6 +61,7 @@ public abstract class TimedInstrument : NetworkBehaviour
 
     public virtual void OnFinishSequence() {
         changeTextClientRpc(Color.green, "Sequence Complete");
+        gameManager.OnRoomSolved();
         StartLoopingTrackClientRpc();
         disableObjectClientRpc();
     }

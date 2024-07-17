@@ -12,6 +12,7 @@ public class MicrophoneController : NetworkBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI text;
     [SerializeField] private string correctLyrics;
+    [SerializeField] private GameManager gameManager;
 
     private AudioClip clip;
     private byte[] bytes;
@@ -108,7 +109,8 @@ public class MicrophoneController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void SucceedClientRpc() { 
+    public void SucceedClientRpc() {
+        gameManager.OnRoomSolved();
         this.gameObject.SetActive(false);
     }
 }

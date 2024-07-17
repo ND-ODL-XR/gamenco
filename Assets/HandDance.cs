@@ -9,6 +9,7 @@ public class HandDance : NetworkBehaviour
 {
     [SerializeField] private float cooldown;
     [SerializeField] private ulong poserId;
+    [SerializeField] private GameManager gameManager;
     public TMPro.TextMeshProUGUI handPoseText;
 
     private bool coolingDown = false;
@@ -96,6 +97,7 @@ public class HandDance : NetworkBehaviour
     {
         Debug.Log("Hand Dance Completed");
         handPoseText.text = "Hand Dance Complete";
+        gameManager.OnRoomSolved();
         this.gameObject.SetActive(false);
     }
 
