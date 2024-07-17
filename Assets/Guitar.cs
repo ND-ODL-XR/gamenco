@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode;
 
 public class Guitar : TimedInstrument
 {
@@ -31,16 +32,17 @@ public class Guitar : TimedInstrument
         colliding = true;
 
         if (other.CompareTag("GuitarPick")) {
+
             PlayNote();
         }
     }
 
-    public override void PlayNote() {
+    [ClientRpc]
+    public override void PlayAudioClientRpc()
+    {
         notes[currentNote].Play();
+
         currentNote++;
-
-        playedCurrentBeat = true;
-
         if (currentNote >= notes.Length)
         {
             currentNote = 0;

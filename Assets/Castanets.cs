@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class Castanets : TimedInstrument
 {
-    [SerializeField] private AudioSource audioSource;
-
-    private void Start()
+    [ClientRpc]
+    public void ActivateClientRpc()
     {
-        audioSource = GetComponent<AudioSource>();
-
+        GetComponent<Renderer>().material.color = Color.green;
     }
 
-    public override void PlayNote()
+    [ClientRpc]
+    public void DeactivateClientRpc()
     {
-        audioSource.Play();
-        playedCurrentBeat = true;
+        GetComponent<Renderer>().material.color = Color.red;
     }
+
 }
