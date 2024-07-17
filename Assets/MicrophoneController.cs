@@ -4,11 +4,14 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using HuggingFace.API;
+using Unity.Netcode;
+using System.Text.RegularExpressions;
 
 
-public class MicrophoneController : MonoBehaviour
+public class MicrophoneController : NetworkBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI text;
+    [SerializeField] private string correctLyrics;
 
     private AudioClip clip;
     private byte[] bytes;
@@ -75,11 +78,37 @@ public class MicrophoneController : MonoBehaviour
         text.color = Color.yellow;
         text.text = "Sending...";
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.green;
-            text.text = response;
+
+            response = Regex.Replace(response, "[^0-9a-zA-Z]+", "");
+            response = Regex.Replace(response, @"\s+", ""); // Remove all whitespace
+            correctLyrics = Regex.Replace(correctLyrics, "[^0-9a-zA-Z]+", "");
+            correctLyrics = Regex.Replace(correctLyrics, @"\s+", ""); // Remove all whitespace
+
+            Debug.Log(response);
+            Debug.Log(correctLyrics);
+
+            if (string.Equals(response, correctLyrics, System.StringComparison.InvariantCultureIgnoreCase)) {
+                DisplayResultClientRpc("SUCCESS", Color.green);
+                SucceedClientRpc();
+
+            } else
+            {
+                DisplayResultClientRpc(response, Color.yellow);
+            }
         }, error => {
-            text.color = Color.red;
-            text.text = error;
+            DisplayResultClientRpc(error, Color.red);
         });
+    }
+
+    [ClientRpc]
+    public void DisplayResultClientRpc(string result, Color color)
+    {
+        text.text = result;
+        text.color = color;
+    }
+
+    [ClientRpc]
+    public void SucceedClientRpc() { 
+        this.gameObject.SetActive(false);
     }
 }

@@ -861,6 +861,7 @@ MonoBehaviour:
   resultText: {fileID: 523343246}
   audioSource: {fileID: 30632178}
   allowedPlayerId: 0
+  metronome: {fileID: 2120340584}
   beats: 00010001
   playedCurrentBeat: 0
   successfulSequence: 1
@@ -7143,7 +7144,7 @@ Transform:
   m_GameObject: {fileID: 395915024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.31, y: 1.326, z: 2.14}
+  m_LocalPosition: {x: -2.2, y: 1.326, z: 2.14}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7163,6 +7164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 982951359}
+  correctLyrics: Testing
 --- !u!114 &395915038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19272,6 +19274,7 @@ MonoBehaviour:
   resultText: {fileID: 576469898}
   audioSource: {fileID: 0}
   allowedPlayerId: 0
+  metronome: {fileID: 2120340584}
   beats: 01000101
   playedCurrentBeat: 0
   successfulSequence: 1
@@ -20268,7 +20271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5cfac070110f45c4fb754ee42f47ce8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.61
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5cfac070110f45c4fb754ee42f47ce8f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31780,6 +31783,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1494207431}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1649714056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649714058}
+  - component: {fileID: 1649714057}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1649714057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649714056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7297fb92596754aad5cf203b8a0774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomsSolved:
+    m_InternalValue: 0
+--- !u!4 &1649714058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649714056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.011554152, y: 1.0515537, z: -0.88383603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1650770280
 GameObject:
   m_ObjectHideFlags: 0
@@ -42236,3 +42285,4 @@ SceneRoots:
   - {fileID: 1676724131}
   - {fileID: 993955032}
   - {fileID: 307104299}
+  - {fileID: 1649714058}

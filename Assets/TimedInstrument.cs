@@ -10,10 +10,12 @@ public abstract class TimedInstrument : NetworkBehaviour
     public TMPro.TextMeshProUGUI resultText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private ulong allowedPlayerId;
+    [SerializeField] private Metronome metronome;
 
     public sbyte[] beats;
     public bool playedCurrentBeat = false;
     public bool successfulSequence = true;
+    private bool disabled = false;
 
     public virtual void PlayNote() {
         PlayNoteServerRpc();
@@ -21,7 +23,7 @@ public abstract class TimedInstrument : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     public virtual void PlayNoteServerRpc(ServerRpcParams serverRpcParams = default) {
-        if (serverRpcParams.Receive.SenderClientId == allowedPlayerId)
+        if (serverRpcParams.Receive.SenderClientId == allowedPlayerId && !disabled)
         {
             playedCurrentBeat = true;
             PlayAudioClientRpc();
@@ -35,6 +37,8 @@ public abstract class TimedInstrument : NetworkBehaviour
 
     // Beat is 1-indexed
     public virtual void OnBeatEnd(int beat) {
+        if (disabled) return;
+
         if ((beats[beat - 1] == 1 && !playedCurrentBeat) || (beats[beat - 1] == 0 && playedCurrentBeat))
         {
             changeTextClientRpc(Color.red, "Incorrect");
@@ -55,17 +59,33 @@ public abstract class TimedInstrument : NetworkBehaviour
 
     public virtual void OnFinishSequence() {
         changeTextClientRpc(Color.green, "Sequence Complete");
+        StartLoopingTrackClientRpc();
         disableObjectClientRpc();
     }
 
+
     [ClientRpc]
-    public void changeTextClientRpc(Color color, string text) {
+    public virtual void StartLoopingTrackClientRpc() {
+        metronome.OnBeat += PlayLoopingNote;
+    }
+
+    public virtual void PlayLoopingNote() {
+        // Modded since the beat count is 1 ahead of the actual beat
+        // TODO: Fix this
+        if (beats[(metronome.beatCount.Value + 1) % 4] == 1)
+        {
+            PlayAudioClientRpc();
+        }
+    }
+
+    [ClientRpc]
+    public virtual void changeTextClientRpc(Color color, string text) {
         resultText.color = color;
         resultText.text = text;
     }
 
     [ClientRpc]
-    public void disableObjectClientRpc() {
-        this.gameObject.SetActive(false);
+    public virtual void disableObjectClientRpc() {
+        disabled = true;
     }
 }

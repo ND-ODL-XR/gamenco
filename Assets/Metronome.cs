@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using System;
 
 public class Metronome : NetworkBehaviour
 {
@@ -15,6 +16,9 @@ public class Metronome : NetworkBehaviour
     private float beatTimer;
 
     public NetworkVariable<int> beatCount = new NetworkVariable<int>(0);
+
+    public event Action onHalfBeat;
+    public event Action OnBeat;
   
     // Start is called before the first frame update
     void Start()
@@ -67,8 +71,11 @@ public class Metronome : NetworkBehaviour
 
         audioSource.pitch = pitch;
         audioSource.Play();
+        OnBeat?.Invoke();
 
         yield return new WaitForSeconds(beatInterval / 2);
+        onHalfBeat?.Invoke();
+
         for (int i = 0; i < timedInstruments.Length; i++)
         {
             if (timedInstruments[i].gameObject.activeSelf)
