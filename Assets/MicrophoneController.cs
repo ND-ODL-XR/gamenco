@@ -18,6 +18,10 @@ public class MicrophoneController : NetworkBehaviour
     private byte[] bytes;
     private bool recording;
 
+    void Start() {
+        correctLyrics = Regex.Replace(correctLyrics, "[^0-9a-zA-Z]+", "");
+    }
+
     private void Update()
     {
         if (recording && Microphone.GetPosition(null) >= clip.samples)
@@ -81,14 +85,10 @@ public class MicrophoneController : NetworkBehaviour
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
 
             response = Regex.Replace(response, "[^0-9a-zA-Z]+", "");
-            response = Regex.Replace(response, @"\s+", ""); // Remove all whitespace
-            correctLyrics = Regex.Replace(correctLyrics, "[^0-9a-zA-Z]+", "");
-            correctLyrics = Regex.Replace(correctLyrics, @"\s+", ""); // Remove all whitespace
+            string responseNoWhitespace = Regex.Replace(response, @"\s+", ""); // Remove all whitespace
+            string correctLyricsNoWhitespace = Regex.Replace(correctLyrics, @"\s+", ""); // Remove all whitespace
 
-            Debug.Log(response);
-            Debug.Log(correctLyrics);
-
-            if (string.Equals(response, correctLyrics, System.StringComparison.InvariantCultureIgnoreCase)) {
+            if (string.Equals(responseNoWhitespace, correctLyricsNoWhitespace, System.StringComparison.InvariantCultureIgnoreCase)) {
                 DisplayResultClientRpc("SUCCESS", Color.green);
                 SucceedClientRpc();
 
