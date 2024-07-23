@@ -8,7 +8,7 @@ using Unity.Netcode;
 public abstract class TimedInstrument : NetworkBehaviour
 {
     public TMPro.TextMeshProUGUI resultText;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
     [SerializeField] private ulong allowedPlayerId;
     [SerializeField] private Metronome metronome;
 
