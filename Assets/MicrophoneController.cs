@@ -84,17 +84,17 @@ public class MicrophoneController : NetworkBehaviour
         text.text = "Sending...";
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
 
-            response = Regex.Replace(response, "[^0-9a-zA-Z]+", "");
-            string responseNoWhitespace = Regex.Replace(response, @"\s+", ""); // Remove all whitespace
-            string correctLyricsNoWhitespace = Regex.Replace(correctLyrics, @"\s+", ""); // Remove all whitespace
+            string originalResponse = response;
+            string cleanedResponse = Regex.Replace(response, "[^0-9a-zA-Z]+", "");
 
-            if (string.Equals(responseNoWhitespace, correctLyricsNoWhitespace, System.StringComparison.InvariantCultureIgnoreCase)) {
+
+            if (string.Equals(Regex.Replace(cleanedResponse, @"\s+", ""), correctLyrics, System.StringComparison.InvariantCultureIgnoreCase)) {
                 DisplayResultClientRpc("SUCCESS", Color.green);
                 SucceedClientRpc();
 
             } else
             {
-                DisplayResultClientRpc(response, Color.yellow);
+                DisplayResultClientRpc(originalResponse, Color.yellow);
             }
         }, error => {
             DisplayResultClientRpc(error, Color.red);
