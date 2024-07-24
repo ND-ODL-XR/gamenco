@@ -9,7 +9,7 @@ public abstract class TimedInstrument : NetworkBehaviour
 {
     public TMPro.TextMeshProUGUI resultText;
     [SerializeField] public AudioSource audioSource;
-    [SerializeField] private ulong allowedPlayerId;
+    [SerializeField] public ulong allowedPlayerId;
     [SerializeField] private Metronome metronome;
 
     [SerializeField] private GameManager gameManager;
