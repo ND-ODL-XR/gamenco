@@ -10,6 +10,7 @@ public class Guitar : TimedInstrument
 {
     [SerializeField] private AudioSource[] notes;
     [SerializeField] private DistanceHandGrabInteractable distanceHandGrab;
+    [SerializeField] private GameObject restingPosition;
 
     private bool colliding = false;
     public int currentNote = 0;
@@ -29,8 +30,13 @@ public class Guitar : TimedInstrument
     {
         if (NetworkManager.Singleton.LocalClientId != allowedPlayerId)
         {
-            distanceHandGrab.enabled = false;
+            disableGrabbable();
         }
+    }
+
+    private void disableGrabbable()
+    {
+        distanceHandGrab.enabled = false;
     }
 
 
@@ -66,5 +72,15 @@ public class Guitar : TimedInstrument
         {
             currentNote = 0;
         }
+    }
+
+    [ClientRpc]
+    public override void disableObjectClientRpc()
+    {
+        disabled = true;
+        disableGrabbable();
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        transform.position = restingPosition.transform.position;
+        transform.rotation = restingPosition.transform.rotation;
     }
 }

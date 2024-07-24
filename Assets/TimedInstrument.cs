@@ -17,7 +17,7 @@ public abstract class TimedInstrument : NetworkBehaviour
     public sbyte[] beats;
     public bool playedCurrentBeat = false;
     public bool successfulSequence = true;
-    private bool disabled = false;
+    public bool disabled = false;
 
     public virtual void PlayNote() {
         PlayNoteServerRpc();
