@@ -10,6 +10,7 @@ public class HandDance : NetworkBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private ulong poserId;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private ParticleSystem particleSystem;
     public TMPro.TextMeshProUGUI handPoseText;
 
     private bool coolingDown = false;
@@ -44,7 +45,7 @@ public class HandDance : NetworkBehaviour
                 if (currentPose.Value > 3)
                 {
                     OnHandDanceCompletionClientRpc();
-                    
+
                 }
                 cooldownTimer = cooldown;
                 coolingDown = true;
@@ -57,6 +58,7 @@ public class HandDance : NetworkBehaviour
         if (IsServer)
         {
             currentPose.OnValueChanged += UpdateBoxColor;
+            currentPose.OnValueChanged += PlayParticlesClientRpc;
         }
     }
 
@@ -65,6 +67,7 @@ public class HandDance : NetworkBehaviour
         if (IsServer)
         {
             currentPose.OnValueChanged -= UpdateBoxColor;
+            currentPose.OnValueChanged -= PlayParticlesClientRpc;
         }
     }
 
@@ -89,6 +92,13 @@ public class HandDance : NetworkBehaviour
             {
                 progressRenderers[i].material.color = deactivatedColor;
             }
+        }
+    }
+
+    [ClientRpc]
+    private void PlayParticlesClientRpc(int oldPoseNumber, int newPoseNumber) {
+        if (NetworkManager.Singleton.LocalClientId == poserId) { 
+            particleSystem.Play();
         }
     }
 

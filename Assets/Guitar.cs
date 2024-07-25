@@ -28,6 +28,8 @@ public class Guitar : TimedInstrument
     [ClientRpc]
     public virtual void DisableGuitarClientRpc()
     {
+        Debug.Log("Disabling guitar for all players except " + allowedPlayerId);
+        Debug.Log("Local client id: " + NetworkManager.Singleton.LocalClientId);
         if (NetworkManager.Singleton.LocalClientId != allowedPlayerId)
         {
             disableGrabbable();
