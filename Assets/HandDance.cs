@@ -17,10 +17,7 @@ public class HandDance : NetworkBehaviour
     private float cooldownTimer;
 
     public NetworkVariable<int> currentPose = new NetworkVariable<int>(1);
-
-    [SerializeField] private Renderer[] progressRenderers;
-    [SerializeField] private Color deactivatedColor;
-    [SerializeField] private Color[] activatedColors;
+    [SerializeField] private ParticleSystem[] progressParticles;
 
     public void OnPoseCorrect(int poseIndex)
     {
@@ -57,7 +54,6 @@ public class HandDance : NetworkBehaviour
     {
         if (IsServer)
         {
-            currentPose.OnValueChanged += UpdateBoxColor;
             currentPose.OnValueChanged += PlayParticlesClientRpc;
         }
     }
@@ -66,37 +62,20 @@ public class HandDance : NetworkBehaviour
     {
         if (IsServer)
         {
-            currentPose.OnValueChanged -= UpdateBoxColor;
             currentPose.OnValueChanged -= PlayParticlesClientRpc;
-        }
-    }
-
-
-    private void UpdateBoxColor(int oldPoseNumber, int newPoseNumber)
-    {
-        Debug.Log("Updating box color");
-        UpdateBoxColorClientRpc(newPoseNumber);
-    }
-
-    [ClientRpc]
-    private void UpdateBoxColorClientRpc(int newPoseNumber)
-    {
-        Debug.Log("Updating box color client rpc. New pose value is " + newPoseNumber);
-        for (int i = 0; i < progressRenderers.Length; i++)
-        {
-            if (i < newPoseNumber - 1)
-            {
-                progressRenderers[i].material.color = activatedColors[i];
-            }
-            else
-            {
-                progressRenderers[i].material.color = deactivatedColor;
-            }
         }
     }
 
     [ClientRpc]
     private void PlayParticlesClientRpc(int oldPoseNumber, int newPoseNumber) {
+        if (newPoseNumber == 1) {
+            for (int i = 0; i < progressParticles.Length; i++) {
+                progressParticles[i].Stop();
+            }
+        }
+        else {
+            progressParticles[newPoseNumber - 1].Play();
+        }
         if (NetworkManager.Singleton.LocalClientId == poserId) { 
             particleSystem.Play();
         }
@@ -124,10 +103,5 @@ public class HandDance : NetworkBehaviour
             }
         }
         
-    }
-
-    void Start() {
-        // Reset box colors in the beginning
-        UpdateBoxColor(1, 1);
     }
 }
