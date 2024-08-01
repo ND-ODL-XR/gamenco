@@ -74,7 +74,7 @@ public class HandDance : NetworkBehaviour
             }
         }
         else {
-            progressParticles[newPoseNumber - 1].Play();
+            progressParticles[newPoseNumber - 2].Play();
         }
         if (NetworkManager.Singleton.LocalClientId == poserId) { 
             particleSystem.Play();

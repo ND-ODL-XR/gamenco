@@ -10,7 +10,9 @@ public class CastanetAnimator : MonoBehaviour
     public OVRHand rightHand;
     public GameObject topCastanet;
     public GameObject bottomCastanet;
-    public float maxSeparation = 0.1f; // Maximum separation of castanets in meters
+    public float maxSeparation = 0.4f; // Maximum separation of castanets in meters
+    public float minSeparation = 0.1f; // Minimum separation of castanets in meters
+    public float displacement = 1f; // Displacement of the castanets in meters
 
 
     private void Update()
@@ -30,12 +32,11 @@ public class CastanetAnimator : MonoBehaviour
             float fingerDistance = rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
 
             // Map the finger distance to castanet separation
-            float castanetSeparation = Mathf.Clamp(fingerDistance, 0f, maxSeparation);
+            float castanetSeparation = Mathf.Clamp(fingerDistance, minSeparation, maxSeparation);
 
             // Update castanet positions
-            Vector3 centerPos = (topCastanet.transform.position + bottomCastanet.transform.position) / 2f;
-            topCastanet.transform.position = centerPos - new Vector3(castanetSeparation / 2f, 0f, 0f);
-            bottomCastanet.transform.position = centerPos + new Vector3(castanetSeparation / 2f, 0f, 0f);
+            topCastanet.transform.position = bottomCastanet.transform.position - new Vector3(0f, castanetSeparation - displacement, 0f);
+            topCastanet.transform.localRotation = Quaternion.Euler(-60 - castanetSeparation * 100, topCastanet.transform.localEulerAngles.y, topCastanet.transform.localEulerAngles.z);
         }
     }
 }
