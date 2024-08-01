@@ -85,11 +85,12 @@ public class MicrophoneController : NetworkBehaviour
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
 
             string originalResponse = response;
+            Debug.Log(originalResponse);
             string cleanedResponse = Regex.Replace(response, "[^0-9a-zA-Z]+", "");
 
 
             if (string.Equals(Regex.Replace(cleanedResponse, @"\s+", ""), correctLyrics, System.StringComparison.InvariantCultureIgnoreCase)) {
-                DisplayResultClientRpc("SUCCESS", Color.green);
+                DisplayResultClientRpc("I love flamenco!", Color.green);
                 SucceedClientRpc();
 
             } else
@@ -97,7 +98,7 @@ public class MicrophoneController : NetworkBehaviour
                 DisplayResultClientRpc(originalResponse, Color.yellow);
             }
         }, error => {
-            DisplayResultClientRpc(error, Color.red);
+            DisplayResultClientRpc("Error...", Color.red);
         });
     }
 

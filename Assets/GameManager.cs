@@ -7,23 +7,36 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour
 {
     public NetworkVariable<int> roomsSolved = new NetworkVariable<int>(0);
-    public TMPro.TextMeshProUGUI[] gameStatusText;
-    
+    public GameObject curtains;
+    public ParticleSystem victorySparkles;
+    public float liftTime;
+    public float liftHeight;
+
     public void OnRoomSolved()
     {
         roomsSolved.Value++;
-        if (roomsSolved.Value >= 4)
+        if (roomsSolved.Value >= 1)
         {
-            ChangeGameStatusTextsClientRpc();
+            LiftCurtainsClientRpc();
         }
     }
 
     [ClientRpc]
-    public void ChangeGameStatusTextsClientRpc() {
-        for (int i = 0; i < gameStatusText.Length; i++)
+    public void LiftCurtainsClientRpc() {
+        StartCoroutine(LiftCurtains());
+        victorySparkles.Play();
+    }
+
+    public IEnumerator LiftCurtains()
+    {
+        float t = 0;
+        while (Mathf.Abs( transform.localPosition.y - liftHeight) > 0.01f)
         {
-            gameStatusText[i].text = "SUCCESS, GAME OVER!";
-            gameStatusText[i].color = Color.green;
+            t += Time.deltaTime;
+            float lerpedValue = t / liftTime;
+            lerpedValue = lerpedValue * lerpedValue * (3f - 2f * lerpedValue);
+            curtains.transform.localPosition = Vector3.Lerp(curtains.transform.localPosition, new Vector3(0, liftHeight, 0), lerpedValue);
+            yield return null;
         }
     }
     
