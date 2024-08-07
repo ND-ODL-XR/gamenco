@@ -60,7 +60,7 @@ public abstract class TimedInstrument : NetworkBehaviour
     }
 
     public virtual void OnFinishSequence() {
-        changeTextClientRpc(Color.green, "Sequence Complete");
+        changeTextClientRpc(Color.green, "Sequence Complete!");
         gameManager.OnRoomSolved();
         StartLoopingTrackClientRpc();
         disableObjectClientRpc();
