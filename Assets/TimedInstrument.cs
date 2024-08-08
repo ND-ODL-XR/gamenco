@@ -43,7 +43,7 @@ public abstract class TimedInstrument : NetworkBehaviour
 
         if ((beats[beat - 1] == 1 && !playedCurrentBeat) || (beats[beat - 1] == 0 && playedCurrentBeat))
         {
-            changeTextClientRpc(Color.red, "Incorrect");
+            changeTextClientRpc(Color.red, "Inorrecto.");
             successfulSequence = false;
         }
         else
@@ -51,7 +51,7 @@ public abstract class TimedInstrument : NetworkBehaviour
             if (beat == 1) {                 
                 successfulSequence = true;
             }
-            changeTextClientRpc(Color.yellow, "Correct");
+            changeTextClientRpc(Color.yellow, "¡Correcta!");
             if (beat >= beats.Length && successfulSequence) {
                 OnFinishSequence();
             }
@@ -60,7 +60,7 @@ public abstract class TimedInstrument : NetworkBehaviour
     }
 
     public virtual void OnFinishSequence() {
-        changeTextClientRpc(Color.green, "Sequence Complete!");
+        changeTextClientRpc(Color.green, "¡Secuencia completa!");
         gameManager.OnRoomSolved();
         StartLoopingTrackClientRpc();
         disableObjectClientRpc();

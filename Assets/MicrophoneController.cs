@@ -90,7 +90,7 @@ public class MicrophoneController : NetworkBehaviour
 
 
             if (string.Equals(Regex.Replace(cleanedResponse, @"\s+", ""), correctLyrics, System.StringComparison.InvariantCultureIgnoreCase)) {
-                DisplayResultClientRpc("I love flamenco!", Color.green);
+                DisplayResultClientRpc("¡Éxito!", Color.green);
                 SucceedClientRpc();
 
             } else

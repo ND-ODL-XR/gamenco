@@ -8,7 +8,7 @@ public class GameManager : NetworkBehaviour
 {
     public NetworkVariable<int> roomsSolved = new NetworkVariable<int>(0);
     public GameObject curtains;
-    //public ParticleSystem victorySparkles;
+    public ParticleSystem victorySparkles;
     public float liftTime;
     public float liftHeight;
 
@@ -24,7 +24,7 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     public void LiftCurtainsClientRpc() {
         StartCoroutine(LiftCurtains());
-        //victorySparkles.Play();
+        victorySparkles.Play();
     }
 
     public IEnumerator LiftCurtains()
